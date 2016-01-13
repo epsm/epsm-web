@@ -3,12 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.epsm.electricPowerSystemModel</groupId>
-	<artifactId>epsm</artifactId>
+	<groupId>com.epsm</groupId>
+	<artifactId>epsm-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Electric Power System Model</name>
-	<description>Very simple model of electric power system</description>
+	<name>Electric power system model web wrapper</name>
 	
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -62,6 +61,13 @@
     		<scope>provided</scope>
 		</dependency>
 		
+		<!-- epsm-core, installed to local repository -->	
+		<dependency>
+			<groupId>com.epsm</groupId>
+			<artifactId>epsm-core</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
 		<!-- Tests -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -113,29 +119,6 @@
           			<failOnMissingWebXml>false</failOnMissingWebXml>
         		</configuration>
       		</plugin>
-      		<!-- it's necessary to hide firstly webmvc dispatcher servlet from EPSD when packaging jar, othrewise it won't start with exception--> 
-      		<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-shade-plugin</artifactId>
-				<version>2.4.3</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>shade</goal>
-						</goals>
-						<configuration>
-							<relocations>
-								<relocation>
-									<pattern>com.epsm.electricPowerSystemModel.configuration</pattern>
-									<pattern>com.epsm.electricPowerSystemModel.controller</pattern>
-									<pattern>com.epsm.electricPowerSystemModel.service</pattern>
-								</relocation>
-							</relocations>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 </project>
