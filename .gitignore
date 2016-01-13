@@ -1,0 +1,12 @@
+bin/
+target/
+build/
+RemoteSystemsTempFiles/
+logs/
+.settings/
+.metadata/
+.classpath
+.project
+*.class
+*.war
+.gitignore~
