@@ -13,10 +13,10 @@ import com.epsm.epsmCore.model.generalModel.TimeService;
 @Configuration
 @ComponentScan("com.epsm.epsmWeb")
 public class ApplicationConfig{
-	private Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
+	private static Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
 	
 	@Bean
-    public PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
+    public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
 		PropertySourcesPlaceholderConfigurer configurer 
 				= new PropertySourcesPlaceholderConfigurer();
 		configurer.setLocation(new ClassPathResource("application.properties"));
