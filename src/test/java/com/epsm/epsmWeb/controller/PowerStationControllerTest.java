@@ -13,9 +13,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.epsm.epsmWeb.configuration.JsonConfig;
-import com.epsm.epsmWeb.util.MockServiceProvider;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = {MockServiceProvider.class, JsonConfig.class,
 		PowerStationController.class})
