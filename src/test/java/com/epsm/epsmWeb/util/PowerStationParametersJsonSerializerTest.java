@@ -1,4 +1,4 @@
-package com.epsm.epsWebUtils.json;
+package com.epsm.epsmWeb.util;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.epsm.epsmCore.model.bothConsumptionAndGeneration.LoadCurve;
 import com.epsm.epsmCore.model.generation.GeneratorParameters;
 import com.epsm.epsmCore.model.generation.PowerStationParameters;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -35,7 +34,6 @@ public class PowerStationParametersJsonSerializerTest {
 		testModule = new SimpleModule();
 		testModule.addSerializer(PowerStationParameters.class,
 				new PowerStationParametersJsonSerializer());
-		testModule.addSerializer(LoadCurve.class,	new LoadCurveJsonSerializer());
 		mapper.registerModule(testModule);
 	}
 	

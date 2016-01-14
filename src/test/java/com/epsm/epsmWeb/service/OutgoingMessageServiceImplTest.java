@@ -1,4 +1,4 @@
-package com.epsm.electricPowerSystemModel.service;
+package com.epsm.epsmWeb.service;
 
 import static org.mockito.Mockito.verify;
 
@@ -13,16 +13,16 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.epsm.electricPowerSystemModel.client.ConsumerParametersClient;
-import com.epsm.electricPowerSystemModel.client.ConsumerStateClient;
-import com.epsm.electricPowerSystemModel.client.PowerStationParametersClient;
-import com.epsm.electricPowerSystemModel.client.PowerStationStateClient;
-import com.epsm.electricPowerSystemModel.model.consumption.ConsumerParametersStub;
-import com.epsm.electricPowerSystemModel.model.consumption.ConsumerState;
-import com.epsm.electricPowerSystemModel.model.dispatch.Parameters;
-import com.epsm.electricPowerSystemModel.model.dispatch.State;
-import com.epsm.electricPowerSystemModel.model.generation.PowerStationParameters;
-import com.epsm.electricPowerSystemModel.model.generation.PowerStationState;
+import com.epsm.epsmCore.model.consumption.ConsumerParametersStub;
+import com.epsm.epsmCore.model.consumption.ConsumerState;
+import com.epsm.epsmCore.model.dispatch.Parameters;
+import com.epsm.epsmCore.model.dispatch.State;
+import com.epsm.epsmCore.model.generation.PowerStationParameters;
+import com.epsm.epsmCore.model.generation.PowerStationState;
+import com.epsm.epsmWeb.client.ConsumerParametersClient;
+import com.epsm.epsmWeb.client.ConsumerStateClient;
+import com.epsm.epsmWeb.client.PowerStationParametersClient;
+import com.epsm.epsmWeb.client.PowerStationStateClient;
 
 @RunWith(MockitoJUnitRunner.class)
 public class OutgoingMessageServiceImplTest {

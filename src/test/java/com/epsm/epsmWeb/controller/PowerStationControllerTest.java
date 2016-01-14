@@ -1,75 +1,61 @@
-package com.epsm.electricPowerSystemModel.controller;
+package com.epsm.epsmWeb.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.context.annotation.Import;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.epsm.electricPowerSystemModel.model.bothConsumptionAndGeneration.LoadCurve;
-import com.epsm.electricPowerSystemModel.model.constantsForTests.TestsConstants;
-import com.epsm.electricPowerSystemModel.model.generation.GeneratorGenerationSchedule;
-import com.epsm.electricPowerSystemModel.model.generation.PowerStationGenerationSchedule;
-import com.epsm.electricPowerSystemModel.service.IncomingMessageService;
-import com.epsm.electricPowerSystemModel.util.UrlRequestSender;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.epsm.epsmWeb.configuration.JsonConfig;
+import com.epsm.epsmWeb.util.MockServiceProvider;
 
-@Import(UrlRequestSender.class)
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(classes = {MockServiceProvider.class, JsonConfig.class,
+		PowerStationController.class})
 public class PowerStationControllerTest {
 	private MockMvc mockMvc;
-	private ObjectMapper mapper;
-	private String objectInJsonString;
-	private Object objectToSerialize;
+	String source = 
+			"{\"powerObjectId\":1,"
+			+ "\"realTimeStamp\":\"0001-02-03T04:05:06.000000007\","
+			+ "\"simulationTimeStamp\":3723000000004,"
+			+ "\"generatorQuantity\":2,"
+			+ "\"generators\":{"
+			+ "\"1\":{"
+			+ "\"generatorTurnedOn\":true,"
+			+ "\"astaticRegulatorTurnedOn\":true,"
+			+ "\"generationCurve\":null,"
+			+ "\"generatorNumber\":1"
+			+ "},\"2\":{"
+			+ "\"generatorTurnedOn\":true,"
+			+ "\"astaticRegulatorTurnedOn\":false,"
+			+ "\"generationCurve\":{"
+			+ "\"loadByHoursInMW\":"
+			+ "[64.88,59.54,55.72,51.9,48.47,48.85,48.09,57.25,76.35,91.6,100.0,99.23,"
+			+ "91.6,91.6,91.22,90.83,90.83,90.83,90.83,90.83,90.83,90.83,90.83,83.96]"
+			+ "},\"generatorNumber\":2"
+			+ "}}}";
 	
-	@InjectMocks
+	@Autowired
 	private PowerStationController controller;
-	
-	@Mock
-	private IncomingMessageService service;
 	
 	@Before
 	public void initialize(){
 		mockMvc = standaloneSetup(controller).build();
-		mapper = new ObjectMapper();
-		mapper.findAndRegisterModules();
 	}
 	
 	@Test
 	public void acceptsPowerStationGenerationSchedule() throws Exception {
-		prepareScheduleAsJSONString();
-		
 		mockMvc.perform(
 				post("/api/powerstation/command")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(objectInJsonString))
+				.content(source))
 				.andExpect(status().isOk());
-	}
-	
-	private void prepareScheduleAsJSONString() throws JsonProcessingException{
-		PowerStationGenerationSchedule generationSchedule = 
-				new PowerStationGenerationSchedule(1, LocalDateTime.MIN, LocalTime.MIN, 2);
-		LoadCurve generationCurve = new LoadCurve(TestsConstants.LOAD_BY_HOURS);
-		GeneratorGenerationSchedule genrationSchedule_1 = new GeneratorGenerationSchedule(
-				1, true, true, null);
-		GeneratorGenerationSchedule genrationSchedule_2 = new GeneratorGenerationSchedule(
-				2, true, false, generationCurve);
-		generationSchedule.addGeneratorSchedule(genrationSchedule_1);
-		generationSchedule.addGeneratorSchedule(genrationSchedule_2);
-		
-		objectToSerialize = generationSchedule;
-		objectInJsonString = mapper.writeValueAsString(objectToSerialize);
 	}
 }

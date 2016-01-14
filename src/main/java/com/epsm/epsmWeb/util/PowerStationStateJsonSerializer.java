@@ -1,4 +1,4 @@
-package com.epsm.epsWebUtils.json;
+package com.epsm.epsmWeb.util;
 
 import java.io.IOException;
 

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
-import com.epsm.epsmWeb.model.consumption.ConsumerParametersStub;
+import com.epsm.epsmCore.model.consumption.ConsumerParametersStub;
 import com.epsm.epsmWeb.util.UrlRequestSender;
 
 @Import(UrlRequestSender.class)

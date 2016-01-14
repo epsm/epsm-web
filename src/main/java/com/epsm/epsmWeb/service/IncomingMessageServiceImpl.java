@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.epsm.epsmWeb.model.dispatch.Command;
-import com.epsm.epsmWeb.model.dispatch.DispatchingObject;
-import com.epsm.epsmWeb.model.generalModel.DispatchingObjectsSource;
+import com.epsm.epsmCore.model.dispatch.Command;
+import com.epsm.epsmCore.model.dispatch.DispatchingObject;
+import com.epsm.epsmCore.model.generalModel.DispatchingObjectsSource;
 
 @Component
 public class IncomingMessageServiceImpl implements IncomingMessageService {

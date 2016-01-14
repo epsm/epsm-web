@@ -3,7 +3,7 @@ package com.epsm.epsmWeb.client;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.epsm.epsmWeb.model.consumption.ConsumerState;
+import com.epsm.epsmCore.model.consumption.ConsumerState;
 
 @Component
 public class ConsumerStateClient extends AbstractClient<ConsumerState>{

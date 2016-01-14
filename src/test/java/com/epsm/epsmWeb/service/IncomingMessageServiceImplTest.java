@@ -1,6 +1,8 @@
-package com.epsm.electricPowerSystemModel.service;
+package com.epsm.epsmWeb.service;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -14,10 +16,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import com.epsm.electricPowerSystemModel.model.consumption.ConsumptionPermissionStub;
-import com.epsm.electricPowerSystemModel.model.dispatch.Command;
-import com.epsm.electricPowerSystemModel.model.dispatch.DispatchingObject;
-import com.epsm.electricPowerSystemModel.model.generalModel.DispatchingObjectsSource;
+import com.epsm.epsmCore.model.consumption.ConsumptionPermissionStub;
+import com.epsm.epsmCore.model.dispatch.Command;
+import com.epsm.epsmCore.model.dispatch.DispatchingObject;
+import com.epsm.epsmCore.model.generalModel.DispatchingObjectsSource;
 
 @RunWith(MockitoJUnitRunner.class)
 public class IncomingMessageServiceImplTest {

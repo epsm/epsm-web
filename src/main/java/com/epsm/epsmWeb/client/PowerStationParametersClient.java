@@ -3,7 +3,7 @@ package com.epsm.epsmWeb.client;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.epsm.epsmWeb.model.generation.PowerStationParameters;
+import com.epsm.epsmCore.model.generation.PowerStationParameters;
 
 @Component
 public class PowerStationParametersClient extends AbstractClient<PowerStationParameters>{

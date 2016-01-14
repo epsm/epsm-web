@@ -3,16 +3,16 @@ package com.epsm.epsmWeb.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.epsm.epsmCore.model.consumption.ConsumerParametersStub;
+import com.epsm.epsmCore.model.consumption.ConsumerState;
+import com.epsm.epsmCore.model.dispatch.Parameters;
+import com.epsm.epsmCore.model.dispatch.State;
+import com.epsm.epsmCore.model.generation.PowerStationParameters;
+import com.epsm.epsmCore.model.generation.PowerStationState;
 import com.epsm.epsmWeb.client.ConsumerParametersClient;
 import com.epsm.epsmWeb.client.ConsumerStateClient;
 import com.epsm.epsmWeb.client.PowerStationParametersClient;
 import com.epsm.epsmWeb.client.PowerStationStateClient;
-import com.epsm.epsmWeb.model.consumption.ConsumerParametersStub;
-import com.epsm.epsmWeb.model.consumption.ConsumerState;
-import com.epsm.epsmWeb.model.dispatch.Parameters;
-import com.epsm.epsmWeb.model.dispatch.State;
-import com.epsm.epsmWeb.model.generation.PowerStationParameters;
-import com.epsm.epsmWeb.model.generation.PowerStationState;
 
 @Component
 public class OutgoingMessageServiceImpl implements OutgoingMessageService {

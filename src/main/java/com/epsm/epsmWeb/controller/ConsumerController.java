@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.epsm.electricPowerSystemModel.model.consumption.ConsumptionPermissionStub;
-import com.epsm.electricPowerSystemModel.service.IncomingMessageService;
+import com.epsm.epsmCore.model.consumption.ConsumptionPermissionStub;
+import com.epsm.epsmWeb.service.IncomingMessageService;
 
 @RestController
 @RequestMapping("/api/consumer")

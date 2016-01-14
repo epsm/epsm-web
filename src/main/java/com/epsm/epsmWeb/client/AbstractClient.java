@@ -3,7 +3,7 @@ package com.epsm.epsmWeb.client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 
-import com.epsm.epsmWeb.model.bothConsumptionAndGeneration.Message;
+import com.epsm.epsmCore.model.bothConsumptionAndGeneration.Message;
 import com.epsm.epsmWeb.util.UrlRequestSender;
 
 @Import(UrlRequestSender.class)
