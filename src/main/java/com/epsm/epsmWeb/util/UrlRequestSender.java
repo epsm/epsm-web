@@ -17,7 +17,7 @@ public class UrlRequestSender<T> {
 	
 	public void sendObjectInJsonToUrlWithPOST(String url, T object){;
 		try{
-			logger.debug("Sending {} to url {}.", object, url);
+			logger.debug("Sending: {} to {}.", object, url);
 			
 			URL urlObject = new URL(url);
 			HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();

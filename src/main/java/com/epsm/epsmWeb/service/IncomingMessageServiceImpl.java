@@ -39,7 +39,7 @@ public class IncomingMessageServiceImpl implements IncomingMessageService {
 		
 		if(object != null){
 			object.executeCommand(command);
-			logger.debug("Got {} for power object#{}.",command, powerObjectId);
+			logger.debug("Got: {} for power object#{}.",command, powerObjectId);
 		}else{
 			logger.info("Got command for not existing power object.");
 		}
