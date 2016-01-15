@@ -2,23 +2,53 @@
 <configuration>
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%d{HH:mm:ss.SSS} %-5level %-12([%thread]) %-47(%logger{48}) - %msg%n</pattern>
+			<pattern>%d{HH:mm:ss.SSS} %-5level %-23([%thread]) %-47(%logger{48}) - %msg%n</pattern>
 		</encoder>
 	</appender>
 
-	<appender name="Application" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="web-application" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %-48(%logger{48}) - %msg%n</Pattern>
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      		<fileNamePattern>/home/anonimous/programming/projects/current/epsm-web/logs/Application.%d{dd-MM-yyy}.log.zip</fileNamePattern>
+      		<fileNamePattern>/home/anonimous/programming/projects/current/epsm-web/logs/web-application.%d{dd-MM-yyy}.log.zip</fileNamePattern>
       		<maxHistory>7</maxHistory>
     	</rollingPolicy>
 	</appender>
 	
-	<logger name="com.epsm.epsmWeb" level="INFO" additivity="false">
-		<appender-ref ref="Application" />
+	<appender name="core-application" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %-48(%logger{48}) - %msg%n</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      		<fileNamePattern>/home/anonimous/programming/projects/current/epsm-web/logs/core-application.%d{dd-MM-yyy}.log.zip</fileNamePattern>
+      		<maxHistory>7</maxHistory>
+    	</rollingPolicy>
+	</appender>
+	
+	<appender name="core-system" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %-30(%logger{40}) - %msg%n</Pattern>
+		</encoder>
+
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      		<fileNamePattern>/home/anonimous/programming/projects/current/epsm-web/logs/core-system.%d{dd-MM-yyy}.log.zip</fileNamePattern>
+      		<maxHistory>7</maxHistory>
+    	</rollingPolicy>
+	</appender>
+	
+	<logger name="com.epsm.epsmWeb" level="DEBUG" additivity="false">
+		<appender-ref ref="web-application" />
+	</logger>
+
+	<logger name="com.epsm.epsmCore.model" level="DEBUG" additivity="false">
+		<appender-ref ref="core-application" />
+	</logger>
+	
+	<logger name="com.epsm.epsmCore.model.bothConsumptionAndGeneration.ObjectConnectionManager" level="DEBUG" additivity="false">
+		<appender-ref ref="core-system" />
 	</logger>
 
 	<root level="INFO">
