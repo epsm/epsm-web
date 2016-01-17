@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
+	<property resource="application.properties"/>
+	
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>%d{HH:mm:ss.SSS} %-5level %-23([%thread]) %-47(%logger{48}) - %msg%n</pattern>
@@ -8,22 +10,22 @@
 
 	<appender name="web-application" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %-48(%logger{48}) - %msg%n</Pattern>
+			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %48(%logger{48}) - %msg%n</Pattern>
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      		<fileNamePattern>/home/anonimous/programming/projects/current/epsm-web/logs/web-application.%d{dd-MM-yyy}.log.zip</fileNamePattern>
+      		<fileNamePattern>${logging.destination}/epsm-web/web-application.%d{dd-MM-yyy}.log.zip</fileNamePattern>
       		<maxHistory>7</maxHistory>
     	</rollingPolicy>
 	</appender>
 	
 	<appender name="core-application" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %-48(%logger{48}) - %msg%n</Pattern>
+			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %-58(%logger{48}) - %msg%n</Pattern>
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      		<fileNamePattern>/home/anonimous/programming/projects/current/epsm-web/logs/core-application.%d{dd-MM-yyy}.log.zip</fileNamePattern>
+      		<fileNamePattern>${logging.destination}/epsm-web/core-application.%d{dd-MM-yyy}.log.zip</fileNamePattern>
       		<maxHistory>7</maxHistory>
     	</rollingPolicy>
 	</appender>
@@ -34,7 +36,7 @@
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-      		<fileNamePattern>/home/anonimous/programming/projects/current/epsm-web/logs/core-system.%d{dd-MM-yyy}.log.zip</fileNamePattern>
+      		<fileNamePattern>${logging.destination}/epsm-web/core-system.%d{dd-MM-yyy}.log.zip</fileNamePattern>
       		<maxHistory>7</maxHistory>
     	</rollingPolicy>
 	</appender>

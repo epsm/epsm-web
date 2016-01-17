@@ -90,6 +90,12 @@
 	</dependencies>
 
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -100,13 +106,60 @@
 					<target>1.8</target>
 				</configuration>
 			</plugin>
-			<plugin>
-        		<artifactId>maven-war-plugin</artifactId>
-        		<version>2.4</version>
-        		<configuration>
-          			<failOnMissingWebXml>false</failOnMissingWebXml>
-        		</configuration>
-      		</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<api.powerstation.esatblishconnection>http://localhost:8080/epsd-web/api/powerstation/esatblishconnection</api.powerstation.esatblishconnection>
+				<api.powerstation.acceptstate>http://localhost:8080/epsd-web/api/powerstation/acceptstate</api.powerstation.acceptstate>
+				<api.consumer.esatblishconnection>http://localhost:8080/epsm-web/api/powerstation/command</api.consumer.esatblishconnection>
+				<api.consumer.acceptstate>http://localhost:8080/epsd-web/api/consumer/acceptstate</api.consumer.acceptstate>
+				
+				<logging.destination>${catalina.base}/logs</logging.destination>
+			</properties>
+			<build>
+				<finalName>dispatcher</finalName>
+				<plugins>
+					<plugin>
+        				<artifactId>maven-war-plugin</artifactId>
+        				<version>2.4</version>
+        				<configuration>
+        					<warName>epsm-web</warName>
+          					<failOnMissingWebXml>false</failOnMissingWebXml>
+        				</configuration>
+      				</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<api.powerstation.esatblishconnection>http://dispatcher-epsm.rhcloud.com/epsd-web/api/powerstation/esatblishconnection</api.powerstation.esatblishconnection>
+				<api.powerstation.acceptstate>http://dispatcher-epsm.rhcloud.com/epsd-web/api/powerstation/acceptstate</api.powerstation.acceptstate>
+				<api.consumer.esatblishconnection>http://dispatcher-epsm.rhcloud.com/epsm-web/api/powerstation/command</api.consumer.esatblishconnection>
+				<api.consumer.acceptstate>http://dispatcher-epsm.rhcloud.com/epsd-web/api/consumer/acceptstate</api.consumer.acceptstate>
+				
+				<logging.destination>/var/lib/openshift/569a41e789f5cff670000021/app-root/logs</logging.destination>
+			</properties>
+			<build>
+				<finalName>dispatcher</finalName>
+				<plugins>
+					<plugin>
+						<artifactId>maven-war-plugin</artifactId>
+						<version>2.4</version>
+						<configuration>
+							<warName>ROOT</warName>
+          					<failOnMissingWebXml>false</failOnMissingWebXml>
+        				</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>
