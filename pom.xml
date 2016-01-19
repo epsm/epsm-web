@@ -165,6 +165,13 @@
 						<configuration>
 							<warName>ROOT</warName>
           					<failOnMissingWebXml>false</failOnMissingWebXml>
+          					<webResources>
+            					<resource>
+              						<directory>WildFlyDeploymentStructure</directory>
+							           <targetPath>WEB-INF</targetPath>
+							           <filtering>true</filtering>
+            					</resource>
+          					</webResources>
         				</configuration>
 					</plugin>
 				</plugins>
