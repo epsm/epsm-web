@@ -16,12 +16,11 @@ public class UrlRequestSender<T> {
 	private Logger logger = LoggerFactory.getLogger(UrlRequestSender.class);
 	
 	public void sendObjectInJsonToUrlWithPOST(String url, T object){;
-		try{
-			logger.debug("Sending: {} to {}.", object, url);
-			
+		try{			
 			URL urlObject = new URL(url);
 			HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();
 			OutputStream outStream = null;
+			int responseCode = Integer.MIN_VALUE;
 		
 			connection.setRequestProperty("Content-Type", "application/json");
 			connection.setRequestMethod("POST");
@@ -30,8 +29,17 @@ public class UrlRequestSender<T> {
 			serialize(outStream, object);
 			outStream.flush();
 			outStream.close();
-			connection.getResponseCode();
+			responseCode = connection.getResponseCode();
 			connection.disconnect();
+			
+			if(responseCode == 200){
+				logger.debug("Sent: {} to {}, response code: {}.", object, url, responseCode);
+			}else{
+				ObjectMapper mapper = new ObjectMapper();
+				
+				String jsonString = mapper.writeValueAsString(object);
+				logger.debug("Sent: {} to {}, response code: {}.", jsonString, url, responseCode);
+			}
 		}catch(Exception e){
 			logger.warn("Error sending POST request to url {}. ",url, e);
 		}
