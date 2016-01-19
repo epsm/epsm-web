@@ -1,13 +1,10 @@
 package com.epsm.epsmWeb.client;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Import;
 import org.springframework.stereotype.Component;
 
 import com.epsm.epsmCore.model.consumption.ConsumerParametersStub;
-import com.epsm.epsmWeb.util.UrlRequestSender;
 
-@Import(UrlRequestSender.class)
 @Component
 public class ConsumerParametersClient extends AbstractClient<ConsumerParametersStub>{
 
@@ -15,6 +12,6 @@ public class ConsumerParametersClient extends AbstractClient<ConsumerParametersS
 	private String api;
 	
 	public void sendConsumerParameters(ConsumerParametersStub parameters){
-		sendMessage(parameters, api);
+		sendMessage(parameters, api);	
 	}
 }
