@@ -18,7 +18,7 @@
       		<maxHistory>7</maxHistory>
     	</rollingPolicy>
 	</appender>
-	
+	jar
 	<appender name="core-application" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
 			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %-58(%logger{48}) - %msg%n</Pattern>
@@ -47,6 +47,10 @@
 
 	<logger name="com.epsm.epsmCore.model" level="DEBUG" additivity="false">
 		<appender-ref ref="core-application" />
+	</logger>
+	
+	<logger name="com.epsm.epsmCore.model.utils" level="DEBUG" additivity="false">
+		<appender-ref ref="web-application" />
 	</logger>
 	
 	<logger name="com.epsm.epsmCore.model.bothConsumptionAndGeneration.ObjectConnectionManager" level="DEBUG" additivity="false">
