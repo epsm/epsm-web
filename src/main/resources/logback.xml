@@ -10,7 +10,7 @@
 
 	<appender name="web-application" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %48(%logger{48}) - %msg%n</Pattern>
+			<Pattern>%d{HH:mm:ss.SSS}  %-5level %-23([%thread]) %58(%logger{48}) - %msg%n</Pattern>
 		</encoder>
 
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
