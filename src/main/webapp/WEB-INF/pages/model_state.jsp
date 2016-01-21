@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=utf-8 pageEncoding="utf-8" %>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="s" %>
 
 <!DOCTYPE html>
 <html>
@@ -14,27 +13,27 @@
         <div class="all">
             <div class="roof">
                 <div class="EPSsw">
-                    <h2 class="EPS">Energy Power System</h2>
+                    <h2 class="EPS">Electric Power System</h2>
                 </div>
                 <form class="out" method="post" action="index.html">
-                    <input class="input" type="submit" value="sign out" name="sign out" />
+                    <input class="input" type="submit" value="sign out" name="sign out" disabled />
                 </form>
                 <p class="cms">curent model state</p>
             </div>
             <div class="menu">
                 <ul>
-                	<li><a href="<s:url href="/model_logs" />model logs</a></li>
-                	<li><a href="${dipatcher}/history">dispatcher</a></li>
-                	<li><a href="${dipatcher}/logs">dispatcher logs</a></li>
+                	<li><a href="${pageContext.request.contextPath}/model_logs">model logs</a></li>
+                	<li><a href="${dipatcherUrl}/history">dispatcher</a></li>
+                	<li><a href="${dipatcherUrl}/logs">dispatcher logs</a></li>
                 </ul>
             </div>
             <div class="basement">
                 <a href="https://github.com/epsm">project on GitHub</a>
-            </div>           
+            </div>
             <div class="indicators">
-                <p>simulation time: ${simulationState.simulationTimeStamp}</p>
-                <p>real time: ${simulationState.realTimeStamp}</p>
-                <p>frequency: ${simulationState.frequency}</p>
+				<p>real time: ${realTimeStamp}</p>               
+                <p>simulation time: ${simulationTimeStamp}</p>
+                <p>frequency: ${frequency} Hz</p>
             </div>
             <table class="user_table">
             	<tr>
@@ -44,10 +43,10 @@
                 <tr>
                     <td>
                     	<div class="over">
-                    		<c:forEach var="stationState" items="${powerStationStates}">
+                    		<c:forEach var="stationState" items="${powerStationStatesContainer}">
 								<p>power station#${stationState.powerObjectId}</p>
-								<c:forEach var="generatorNumber" items="stationState.generatorsNumbers">
-									<p>generator#${generatorNumber} generation: ${generatorState(generatorNumber).generationInWM} MW</p>
+								<c:forEach var="generatorNumber" items="${stationState.generatorsNumbers}">
+									<p>generator#${generatorNumber} generation ${stationState.getGeneratorState(generatorNumber).generationInWM} MW<p>
 								</c:forEach>
 								<br>
                         	</c:forEach>
@@ -55,9 +54,9 @@
                     </td>
                     <td>
                     	<div class="over">
-							<c:forEach var="consumerState" items="${consumersStates}">
-								<p>consumer#${powerObjectId}</p>
-								<p>load: ${load} MW</p>
+							<c:forEach var="consumerState" items="${consumerStatesContainer}">
+								<p>consumer#${consumerState.powerObjectId}</p>
+								<p>load: ${-consumerState.load} MW</p>
 	                       		<br>
                         	</c:forEach>
                         </div>

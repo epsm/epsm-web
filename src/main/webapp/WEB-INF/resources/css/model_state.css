@@ -1,6 +1,6 @@
 div.all{
-    width: 1280px;
-    height: 900px; 
+    width: 1000px;
+    height: 600px; 
     position:relative;
     top:0;
     left:0;
@@ -39,7 +39,6 @@ div.menu ul{
     list-style: none;
     padding: 0px;
     margin: 0px;
-    margin-left: 450px;
 }
 
 div.menu ul li {
@@ -98,8 +97,8 @@ div.over{
 div.basement{
     position: absolute;
     left: 0;
-    bottom: 0;
-    width: 1200px;
+    bottom: 3px;
+    width: 920px;
     padding: 40px;
     padding-top: 5px;
     padding-bottom: 5px;
