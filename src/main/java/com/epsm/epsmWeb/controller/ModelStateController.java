@@ -3,19 +3,25 @@ package com.epsm.epsmWeb.controller;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.epsm.epsmCore.model.consumption.ConsumerState;
-import com.epsm.epsmCore.model.generation.GeneratorState;
 import com.epsm.epsmCore.model.generation.PowerStationState;
 import com.epsm.epsmWeb.service.ModelStateService;
 
 @Controller
 @RequestMapping("/")
 public class ModelStateController{
+	
+	@Value("${dispatcher.url}")
+	private String dispatcherUrl;
+	
+	@Value("${api.consumer.esatblishconnection}")
+	private String api;
 	
 	@Autowired
 	private ModelStateService service;
@@ -45,6 +51,7 @@ public class ModelStateController{
 		model.put("realTimeStamp", realTimeStamp.toString());
 		model.put("simulationTimeStamp", simulationTimeStamp.toString());
 		model.put("frequency", frequency);
+		model.put("dispatcherUrl", dispatcherUrl);
 	}
 	
 	private Collection<PowerStationState> getPowerStationStatesContainer(){

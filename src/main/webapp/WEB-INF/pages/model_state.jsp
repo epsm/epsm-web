@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -22,9 +23,9 @@
             </div>
             <div class="menu">
                 <ul>
-                	<li><a href="${pageContext.request.contextPath}/model_logs">model logs</a></li>
-                	<li><a href="${dipatcherUrl}/history">dispatcher</a></li>
-                	<li><a href="${dipatcherUrl}/logs">dispatcher logs</a></li>
+                	<li><a href="${pageContext.request.contextPath}/logs">model logs</a></li>
+                	<li><a href="${dispatcherUrl}">dispatcher</a></li>
+                	<li><a href="${dispatcherUrl}/logs">dispatcher logs</a></li>
                 </ul>
             </div>
             <div class="basement">
@@ -33,7 +34,7 @@
             <div class="indicators">
 				<p>real time: ${realTimeStamp}</p>               
                 <p>simulation time: ${simulationTimeStamp}</p>
-                <p>frequency: ${frequency} Hz</p>
+                <p>frequency: <fmt:formatNumber type="number" pattern="##.###" value="${frequency}" /> Hz</p>
             </div>
             <table class="user_table">
             	<tr>
@@ -46,7 +47,9 @@
                     		<c:forEach var="stationState" items="${powerStationStatesContainer}">
 								<p>power station#${stationState.powerObjectId}</p>
 								<c:forEach var="generatorNumber" items="${stationState.generatorsNumbers}">
-									<p>generator#${generatorNumber} generation ${stationState.getGeneratorState(generatorNumber).generationInWM} MW<p>
+									<p>generator#${generatorNumber} generation: 
+											<fmt:formatNumber type="number" pattern="####.###" 
+											value="${stationState.getGeneratorState(generatorNumber).generationInWM}" /> MW<p>
 								</c:forEach>
 								<br>
                         	</c:forEach>
