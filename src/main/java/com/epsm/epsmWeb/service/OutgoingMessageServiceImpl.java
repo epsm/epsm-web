@@ -30,7 +30,7 @@ public class OutgoingMessageServiceImpl implements OutgoingMessageService {
 	private ConsumerStateClient consumerStateClient;
 	
 	@Override
-	public boolean establishConnection(Parameters parameters) {
+	public boolean registerObject(Parameters parameters) {
 		if(parameters == null){
 			String message = "OutgoingMessageServiceImpl establishConnection(...):"
 		    		+ " parameters must not be null.";
