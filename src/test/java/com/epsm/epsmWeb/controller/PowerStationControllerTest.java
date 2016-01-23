@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -60,7 +59,7 @@ public class PowerStationControllerTest {
 	
 	private void prepareScheduleAsJSONString() throws JsonProcessingException{
 		PowerStationGenerationSchedule generationSchedule = 
-				new PowerStationGenerationSchedule(1, LocalDateTime.MIN, LocalTime.MIN, 2);
+				new PowerStationGenerationSchedule(1, LocalDateTime.MIN, LocalDateTime.MIN, 2);
 		LoadCurve generationCurve = new LoadCurve(TestsConstants.LOAD_BY_HOURS);
 		GeneratorGenerationSchedule genrationSchedule_1 = new GeneratorGenerationSchedule(
 				1, true, true, null);

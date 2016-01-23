@@ -11,7 +11,7 @@ public class PowerStationParametersClient extends AbstractClient<PowerStationPar
 	@Value("${api.powerstation.esatblishconnection}")
 	private String api;
 	
-	public void sendStationParameters(PowerStationParameters parameters){
-		sendMessage(parameters, api);
+	public boolean sendStationParameters(PowerStationParameters parameters){
+		return sendMessage(parameters, api);
 	}
 }

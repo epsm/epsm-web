@@ -30,15 +30,15 @@ public class OutgoingMessageServiceImpl implements OutgoingMessageService {
 	private ConsumerStateClient consumerStateClient;
 	
 	@Override
-	public void establishConnection(Parameters parameters) {
+	public boolean establishConnection(Parameters parameters) {
 		if(parameters == null){
 			String message = "OutgoingMessageServiceImpl establishConnection(...):"
 		    		+ " parameters must not be null.";
 			throw new IllegalArgumentException(message);
 		}else if(parameters instanceof PowerStationParameters){
-			stationParametersClient.sendStationParameters((PowerStationParameters) parameters);
+			return stationParametersClient.sendStationParameters((PowerStationParameters) parameters);
 		}else if(parameters instanceof ConsumerParametersStub){
-			consumerParametersClient.sendConsumerParameters((ConsumerParametersStub) parameters);
+			return consumerParametersClient.sendConsumerParameters((ConsumerParametersStub) parameters);
 		}else{
 			String message = String.format("OutgoingMessageServiceImpl establishConnection(...):"
 		    		+ " %s is unsupported", parameters.getClass().getSimpleName());

@@ -11,7 +11,7 @@ public class ConsumerParametersClient extends AbstractClient<ConsumerParametersS
 	@Value("${api.consumer.esatblishconnection}")
 	private String api;
 	
-	public void sendConsumerParameters(ConsumerParametersStub parameters){
-		sendMessage(parameters, api);	
+	public boolean sendConsumerParameters(ConsumerParametersStub parameters){
+		return sendMessage(parameters, api);	
 	}
 }

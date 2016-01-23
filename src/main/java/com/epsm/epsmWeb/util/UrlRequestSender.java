@@ -15,7 +15,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class UrlRequestSender<T> {
 	private Logger logger = LoggerFactory.getLogger(UrlRequestSender.class);
 	
-	public void sendObjectInJsonToUrlWithPOST(String url, T object){;
+	public boolean sendObjectInJsonToUrlWithPOST(String url, T object){;
 		try{			
 			URL urlObject = new URL(url);
 			HttpURLConnection connection = (HttpURLConnection) urlObject.openConnection();
@@ -34,15 +34,21 @@ public class UrlRequestSender<T> {
 			
 			if(responseCode == 200){
 				logger.debug("Sent: {} to {}, response code: {}.", object, url, responseCode);
+				
+				return true;
 			}else{
 				ObjectMapper mapper = new ObjectMapper();
 				
 				String jsonString = mapper.writeValueAsString(object);
 				logger.debug("Sent: {} to {}, response code: {}.", jsonString, url, responseCode);
+				
+				return false;
 			}
 		}catch(Exception e){
 			logger.warn("Error sending POST request to url {}. ",url, e);
 		}
+		
+		return false;
 	}
 	
 	private void serialize(OutputStream outStream, Object object){

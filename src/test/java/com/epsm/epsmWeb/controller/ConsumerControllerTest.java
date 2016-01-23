@@ -5,7 +5,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -53,7 +52,7 @@ public class ConsumerControllerTest {
 	}
 	
 	private void preparePermissionAsJSONString() throws JsonProcessingException{
-		objectToSerialize = new ConsumptionPermissionStub(0, LocalDateTime.MIN, LocalTime.MIN);
+		objectToSerialize = new ConsumptionPermissionStub(0, LocalDateTime.MIN, LocalDateTime.MIN);
 		objectInJsonString = mapper.writeValueAsString(objectToSerialize);
 	}
 }

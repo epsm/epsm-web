@@ -1,5 +1,7 @@
 package com.epsm.epsmWeb.configuration;
 
+import java.time.LocalDateTime;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +25,8 @@ public class ModelConfig{
 	
 	@Bean
 	public DispatchingObjectsSource getSource(){
-		DispatchingObjectsSourceFactory factory 
-				= new DispatchingObjectsSourceFactory(timeservice, dispatcher);
+		DispatchingObjectsSourceFactory factory = new DispatchingObjectsSourceFactory(
+				timeservice, dispatcher, LocalDateTime.of(2000, 01, 01, 00, 00));
 		
 		logger.info("EPS Model created and run.");
 		

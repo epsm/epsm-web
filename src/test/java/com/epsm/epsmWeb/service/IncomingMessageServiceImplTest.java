@@ -5,7 +5,6 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,7 +38,7 @@ public class IncomingMessageServiceImplTest {
 		Map<Long,DispatchingObject> dispatchingObjects = new HashMap<Long,DispatchingObject>();
 		dispatchingObjects.put(1L, object);
 		when(source.getDispatchingObjects()).thenReturn(dispatchingObjects);
-		command = new ConsumptionPermissionStub(1, LocalDateTime.MIN, LocalTime.MIN);
+		command = new ConsumptionPermissionStub(1, LocalDateTime.MIN, LocalDateTime.MIN);
 	}
 	
 	@Test
@@ -65,7 +64,7 @@ public class IncomingMessageServiceImplTest {
 	
 	@Test
 	public void doNothingIfCommandAdressedToNonExistsObject(){
-		command = new ConsumptionPermissionStub(99999, LocalDateTime.MIN, LocalTime.MIN);
+		command = new ConsumptionPermissionStub(99999, LocalDateTime.MIN, LocalDateTime.MIN);
 		service.acceptCommand(command);
 	}
 }

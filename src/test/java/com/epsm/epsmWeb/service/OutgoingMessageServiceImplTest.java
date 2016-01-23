@@ -3,7 +3,6 @@ package com.epsm.epsmWeb.service;
 import static org.mockito.Mockito.verify;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -53,15 +52,15 @@ public class OutgoingMessageServiceImplTest {
 	
 	@Test
 	public void usesStationParametersClientForSendingStationParameters(){
-		stationParameters = new PowerStationParameters(1, LocalDateTime.MIN, LocalTime.MIN, 1);
-		service.establishConnection(stationParameters);
+		stationParameters = new PowerStationParameters(1, LocalDateTime.MIN, LocalDateTime.MIN, 1);
+		service.registerObject(stationParameters);
 		
 		verify(stationParametersClient).sendStationParameters(stationParameters);
 	}
 	
 	@Test
 	public void usesStationStateClientForSendingStationState(){
-		powerStationState = new PowerStationState(1, LocalDateTime.MIN, LocalTime.MIN, 1, 0);
+		powerStationState = new PowerStationState(1, LocalDateTime.MIN, LocalDateTime.MIN, 1, 0);
 		service.acceptState(powerStationState);
 		
 		verify(stationStateClient).sendPowerStationState(powerStationState);
@@ -69,15 +68,15 @@ public class OutgoingMessageServiceImplTest {
 	
 	@Test
 	public void usesConsumerParametersClientForSendingConsumerParameters(){
-		consumerParameters = new ConsumerParametersStub(1, LocalDateTime.MIN, LocalTime.MIN);
-		service.establishConnection(consumerParameters);
+		consumerParameters = new ConsumerParametersStub(1, LocalDateTime.MIN, LocalDateTime.MIN);
+		service.registerObject(consumerParameters);
 		
 		verify(consumerParametersClient).sendConsumerParameters(consumerParameters);
 	}
 	
 	@Test
 	public void usesConsumerStateClientForSendingConsumerState(){
-		consumerState = new ConsumerState(1, LocalDateTime.MIN, LocalTime.MIN, 0);
+		consumerState = new ConsumerState(1, LocalDateTime.MIN, LocalDateTime.MIN, 0);
 		service.acceptState(consumerState);
 		
 		verify(consumerStateClient).sendConsumerState(consumerState);
@@ -89,7 +88,7 @@ public class OutgoingMessageServiceImplTest {
 	    expectedEx.expectMessage("OutgoingMessageServiceImpl establishConnection(...):"
 	    		+ " parameters must not be null.");
 	    
-	    service.establishConnection(null);
+	    service.registerObject(null);
 	}
 	
 	@Test
@@ -107,12 +106,12 @@ public class OutgoingMessageServiceImplTest {
 	    		+ " UnknownParameters is unsupported");
 		
 		unknownParameters = new UnknownParameters();
-		service.establishConnection(unknownParameters);
+		service.registerObject(unknownParameters);
 	}
 	
 	private class UnknownParameters extends Parameters{
 		public UnknownParameters() {
-			super(1, LocalDateTime.MIN, LocalTime.MIN);
+			super(1, LocalDateTime.MIN, LocalDateTime.MIN);
 		}
 
 		@Override
@@ -132,7 +131,7 @@ public class OutgoingMessageServiceImplTest {
 	
 	private class UnknownState extends State{
 		public UnknownState() {
-			super(1, LocalDateTime.MIN, LocalTime.MIN);
+			super(1, LocalDateTime.MIN, LocalDateTime.MIN);
 		}
 
 		@Override
