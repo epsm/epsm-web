@@ -13,9 +13,9 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.4.RELEASE</spring.version>
 		
-		<api.powerstation.esatblishconnection>/api/powerstation/esatblishconnection</api.powerstation.esatblishconnection>
+		<api.powerstation.esatblishconnection>/api/powerstation/register</api.powerstation.esatblishconnection>
 		<api.powerstation.acceptstate>/api/powerstation/acceptstate</api.powerstation.acceptstate>
-		<api.consumer.esatblishconnection>/api/consumer/esatblishconnection</api.consumer.esatblishconnection>
+		<api.consumer.esatblishconnection>/api/consumer/register</api.consumer.esatblishconnection>
 		<api.consumer.acceptstate>/api/consumer/acceptstate</api.consumer.acceptstate>
 	</properties>
 
