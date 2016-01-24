@@ -53,7 +53,7 @@
 		<appender-ref ref="web-application" />
 	</logger>
 	
-	<logger name="com.epsm.epsmCore.model.bothConsumptionAndGeneration.ObjectConnectionManager" level="DEBUG" additivity="false">
+	<logger name="com.epsm.epsmCore.model.bothConsumptionAndGeneration.PowerObjectMessageManager" level="DEBUG" additivity="false">
 		<appender-ref ref="core-system" />
 	</logger>
 

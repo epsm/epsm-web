@@ -15,6 +15,7 @@ import com.epsm.epsmCore.model.generalModel.TimeService;
 
 @Configuration
 public class ModelConfig{
+	private final LocalDateTime simulationStartDateTime = LocalDateTime.of(2000, 01, 01, 17, 40);
 	private Logger logger = LoggerFactory.getLogger(ModelConfig.class);
 	
 	@Autowired
@@ -26,7 +27,7 @@ public class ModelConfig{
 	@Bean
 	public DispatchingObjectsSource getSource(){
 		DispatchingObjectsSourceFactory factory = new DispatchingObjectsSourceFactory(
-				timeservice, dispatcher, LocalDateTime.of(2000, 01, 01, 00, 00));
+				timeservice, dispatcher, simulationStartDateTime);
 		
 		logger.info("EPS Model created and run.");
 		
