@@ -23,9 +23,7 @@
             </div>
             <div class="menu">
                 <ul>
-                	<li><a href="${pageContext.request.contextPath}/logs">model logs</a></li>
                 	<li><a href="${dispatcherUrl}">dispatcher</a></li>
-                	<li><a href="${dispatcherUrl}/logs">dispatcher logs</a></li>
                 </ul>
             </div>
             <div class="basement">
@@ -59,7 +57,7 @@
                     	<div class="over">
 							<c:forEach var="consumerState" items="${consumerStatesContainer}">
 								<p>consumer#${consumerState.powerObjectId}</p>
-								<p>load: <fmt:formatNumber type="number" pattern="###.###" value="${-consumerState.load}" /> MW</p>
+								<p>load: <fmt:formatNumber type="number" pattern="###.###" value="${consumerState.load}" /> MW</p>
 	                       		<br>
                         	</c:forEach>
                         </div>
