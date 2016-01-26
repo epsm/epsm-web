@@ -15,7 +15,7 @@ import com.epsm.epsmCore.model.generalModel.TimeService;
 
 @Configuration
 public class ModelConfig{
-	private final LocalDateTime simulationStartDateTime = LocalDateTime.of(2000, 01, 01, 17, 40);
+	private final LocalDateTime simulationStartDateTime = LocalDateTime.of(2000, 01, 01, 00, 00);
 	private Logger logger = LoggerFactory.getLogger(ModelConfig.class);
 	
 	@Autowired
