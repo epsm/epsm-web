@@ -15,13 +15,10 @@ import com.epsm.epsmWeb.service.ModelStateService;
 
 @Controller
 @RequestMapping("/")
-public class ModelStateController{
+public class ModelStatePageController{
 	
 	@Value("${dispatcher.url}")
 	private String dispatcherUrl;
-	
-	@Value("${api.consumer.esatblishconnection}")
-	private String api;
 	
 	@Autowired
 	private ModelStateService service;
