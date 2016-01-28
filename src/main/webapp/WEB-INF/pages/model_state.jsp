@@ -23,15 +23,15 @@
             </div>
             <div class="menu">
                 <ul>
-                	<li><a href="${dispatcherUrl}">dispatcher</a></li>
+                	<li><a href="${dispatcherUrl}/history">dispatcher</a></li>
                 </ul>
             </div>
             <div class="basement">
                 <a href="https://github.com/epsm">project on GitHub</a>
             </div>
             <div class="indicators">
-				<p>real time: ${realTimeStamp}</p>               
-                <p>simulation time: ${simulationTimeStamp}</p>
+				<p>date and time on server: ${realTimeStamp}</p>               
+                <p>date and time in simulation: ${simulationTimeStamp}</p>
                 <p>frequency: <fmt:formatNumber type="number" pattern="##.###" value="${frequency}" /> Hz</p>
             </div>
             <table class="user_table">

@@ -1,7 +1,10 @@
 package com.epsm.epsmWeb.controller;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,8 @@ import com.epsm.epsmWeb.service.ModelStateService;
 @Controller
 @RequestMapping("/")
 public class ModelStatePageController{
+	private DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd.MM.yyy HH:mm:ss");
+	private Logger logger = LoggerFactory.getLogger(ModelStatePageController.class);
 	
 	@Value("${dispatcher.url}")
 	private String dispatcherUrl;
@@ -45,10 +50,12 @@ public class ModelStatePageController{
 		
 		model.put("powerStationStatesContainer", powerStationStates);
 		model.put("consumerStatesContainer", consumerStates);
-		model.put("realTimeStamp", realTimeStamp.toString());
+		model.put("realTimeStamp", realTimeStamp);
 		model.put("simulationTimeStamp", simulationTimeStamp.toString());
 		model.put("frequency", frequency);
 		model.put("dispatcherUrl", dispatcherUrl);
+		
+		logger.info("Requested: model state page.");
 	}
 	
 	private Collection<PowerStationState> getPowerStationStatesContainer(){
@@ -63,9 +70,9 @@ public class ModelStatePageController{
 			Collection<ConsumerState> consumerStates){
 		
 		if(powerStationStates.size() != 0){
-			return powerStationStates.iterator().next().getRealTimeStamp().toString();
+			return formatter.format(powerStationStates.iterator().next().getRealTimeStamp());
 		}else if(consumerStates.size() != 0){
-			return consumerStates.iterator().next().getRealTimeStamp().toString();
+			return formatter.format(consumerStates.iterator().next().getRealTimeStamp());
 		}else{
 			return "unknown";
 		}
@@ -75,9 +82,9 @@ public class ModelStatePageController{
 			Collection<ConsumerState> consumerStates){
 		
 		if(powerStationStates.size() != 0){
-			return powerStationStates.iterator().next().getSimulationTimeStamp().toString();
+			return formatter.format(powerStationStates.iterator().next().getSimulationTimeStamp());
 		}else if(consumerStates.size() != 0){
-			return consumerStates.iterator().next().getSimulationTimeStamp().toString();
+			return formatter.format(consumerStates.iterator().next().getSimulationTimeStamp());
 		}else{
 			return "unknown";
 		}

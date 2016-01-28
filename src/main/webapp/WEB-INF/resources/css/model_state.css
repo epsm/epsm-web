@@ -1,5 +1,5 @@
 div.all{
-    width: 1000px;
+    width: 1280px;
     height: 600px; 
     position:relative;
     top:0;
@@ -42,8 +42,10 @@ div.menu ul{
 }
 
 div.menu ul li {
-	display: inline;
-	padding: 0;
+	list-style: none;
+    padding: 0px;
+    margin: 0px;
+    margin-left: 585px;
 }
 
 div.menu ul li a {
@@ -72,7 +74,7 @@ p.cms {
     float: left;
     font: 80% sans-serif;
     margin: 10px;
-    margin-left: 30px;
+    margin-left: 85px;
 }
 
 table.user_table {
@@ -80,14 +82,14 @@ table.user_table {
     text-align: center;    
     position: absolute;
     margin-top: 100px;
-    margin-left: 100px;
+    margin-left: 20px;
     border-collapse: separate;
-    border-spacing: 20px 10px; 
+    border-spacing: 140px 10px; 
     overflow-y: hidden;
 }
 
 div.over{
-    width: 300px;
+    width: 400px;
     height: 250px;
     color: black;
     border: 1px solid #4477bb;
@@ -98,7 +100,7 @@ div.basement{
     position: absolute;
     left: 0;
     bottom: 3px;
-    width: 920px;
+    width: 1200px;
     padding: 40px;
     padding-top: 5px;
     padding-bottom: 5px;
