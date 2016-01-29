@@ -74,7 +74,7 @@ p.cms {
     float: left;
     font: 80% sans-serif;
     margin: 10px;
-    margin-left: 85px;
+    margin-left: 90px;
 }
 
 table.user_table {
@@ -94,6 +94,7 @@ div.over{
     color: black;
     border: 1px solid #4477bb;
     overflow-y: scroll;
+    background-color: #f1f8e9;
 }
 
 div.basement{
