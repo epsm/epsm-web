@@ -30,9 +30,10 @@
                 <a href="https://github.com/epsm">project on GitHub</a>
             </div>
             <div class="indicators">
-				<p>date and time on server: ${realTimeStamp}</p>               
-                <p>date and time in simulation: ${simulationTimeStamp}</p>
-                <p>frequency: <fmt:formatNumber type="number" pattern="##.###" value="${frequency}" /> Hz</p>
+					<p>date and time on server: <font color="black">${realTimeStamp}</font></p>               
+                	<p>date and time in simulation: <font color="black">${simulationTimeStamp}</font></p>
+                	<p>frequency: <font color="black"><fmt:formatNumber type="number" pattern="0.000" value="${frequency}" /></font> Hz</p>
+            	
             </div>
             <table class="user_table">
             	<tr>
@@ -46,7 +47,7 @@
 								<p>power station#${stationState.powerObjectId}</p>
 								<c:forEach var="generatorNumber" items="${stationState.generatorsNumbers}">
 									<p>generator#${generatorNumber} generation: 
-											<fmt:formatNumber type="number" pattern="####.###" 
+											<fmt:formatNumber type="number" pattern="0.000" 
 											value="${stationState.getGeneratorState(generatorNumber).generationInWM}" /> MW<p>
 								</c:forEach>
 								<br>
@@ -57,7 +58,7 @@
                     	<div class="over">
 							<c:forEach var="consumerState" items="${consumerStatesContainer}">
 								<p>consumer#${consumerState.powerObjectId}</p>
-								<p>load: <fmt:formatNumber type="number" pattern="###.###" value="${consumerState.load}" /> MW</p>
+								<p>load: <fmt:formatNumber type="number" pattern="0.000" value="${consumerState.load}" /> MW</p>
 	                       		<br>
                         	</c:forEach>
                         </div>
