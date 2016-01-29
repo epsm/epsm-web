@@ -22,16 +22,13 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.epsm.epsmCore.model.consumption.ConsumerState;
-import com.epsm.epsmCore.model.generalModel.DispatchingObjectsSource;
 import com.epsm.epsmCore.model.generation.PowerStationState;
 import com.epsm.epsmWeb.service.ModelStateService;
 
 @RunWith(MockitoJUnitRunner.class)
-@ContextConfiguration(classes = {ModelStateService.class, DispatchingObjectsSource.class})
 public class ModelStatePageControllerTest {
 	private MockMvc mockMvc;
 	private Collection<PowerStationState> powerStationStates;
