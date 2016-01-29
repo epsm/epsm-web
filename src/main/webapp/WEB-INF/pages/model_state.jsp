@@ -6,7 +6,7 @@
 <html>
     <head>
         <title>Model state</title>
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/model_state.css">
+        <link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/model_state.css"/>">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
