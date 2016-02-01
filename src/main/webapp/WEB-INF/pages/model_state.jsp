@@ -23,7 +23,7 @@
             </div>
             <div class="menu">
                 <ul>
-                	<li><a href="${dispatcherUrl}/history">dispatcher</a></li>
+                	<li><a href="${dispatcherUrl}/app/history">dispatcher</a></li>
                 </ul>
             </div>
             <div class="basement">
