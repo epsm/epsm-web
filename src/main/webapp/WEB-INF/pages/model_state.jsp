@@ -24,6 +24,7 @@
             <div class="menu">
                 <ul>
                 	<li><a href="${dispatcherUrl}/app/history">dispatcher</a></li>
+                	<li><a href="https://github.com/epsm/epsm-web">what does that mean</a></li>
                 </ul>
             </div>
             <div class="basement">
@@ -33,7 +34,6 @@
 					<p>date and time on server: <font color="black">${realTimeStamp}</font></p>               
                 	<p>date and time in simulation: <font color="black">${simulationTimeStamp}</font></p>
                 	<p>frequency: <font color="black"><fmt:formatNumber type="number" pattern="0.000" value="${frequency}" /></font> Hz</p>
-            	
             </div>
             <table class="user_table">
             	<tr>
