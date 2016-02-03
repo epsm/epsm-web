@@ -24,7 +24,7 @@
             <div class="menu">
                 <ul>
                 	<li><a href="${dispatcherUrl}/app/history">dispatcher</a></li>
-                	<li><a href="https://github.com/epsm/epsm-web">what does that mean</a></li>
+                	<li><a href="https://github.com/epsm/epsm-web">what does it mean</a></li>
                 </ul>
             </div>
             <div class="basement">
