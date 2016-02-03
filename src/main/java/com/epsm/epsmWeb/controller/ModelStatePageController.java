@@ -3,6 +3,8 @@ package com.epsm.epsmWeb.controller;
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +31,9 @@ public class ModelStatePageController{
 	private ModelStateService service;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public String createModelStatePage(ModelMap model) {
+	public String createModelStatePage(ModelMap model, HttpServletRequest request) {
 	 	obtainAllNecessaryParameters(model);
+	 	logger.info("Requested: model state page from {}.", request.getRemoteAddr());
 	 	
         return "model_state";
     }
@@ -54,8 +57,6 @@ public class ModelStatePageController{
 		model.put("simulationTimeStamp", simulationTimeStamp.toString());
 		model.put("frequency", frequency);
 		model.put("dispatcherUrl", dispatcherUrl);
-		
-		logger.info("Requested: model state page.");
 	}
 	
 	private Collection<PowerStationState> getPowerStationStatesContainer(){
