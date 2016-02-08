@@ -55,7 +55,7 @@
                     	<div class="over">
 							<c:forEach var="consumerState" items="${consumerStatesContainer}">
 								<p>consumer#${consumerState.powerObjectId}</p>
-								<p>load: <fmt:formatNumber type="number" pattern="0.000" value="${consumerState.load}" /> MW</p>
+								<p>load: <fmt:formatNumber type="number" pattern="0.000" value="${consumerState.loadInMW}" /> MW</p>
 	                       		<br>
                         	</c:forEach>
                         </div>
