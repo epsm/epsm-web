@@ -27,9 +27,6 @@
                 	<li><a href="https://github.com/epsm/epsm-web">what does it mean</a></li>
                 </ul>
             </div>
-            <div class="basement">
-                <a href="https://github.com/epsm">project on GitHub</a>
-            </div>
             <div class="indicators">
 					<p>date and time on server: <font color="black">${realTimeStamp}</font></p>               
                 	<p>date and time in simulation: <font color="black">${simulationTimeStamp}</font></p>
@@ -65,6 +62,10 @@
                     </td>
                 </tr>                  
             </table>
+             <div class="basement">
+                <a href="https://github.com/epsm">project on GitHub</a>
+                <a href="http://dou.ua/forums/topic/16411/">please criticize project on dou.ua</a>
+            </div>
         </div>
     </body>
 </html>
