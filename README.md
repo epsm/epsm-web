@@ -27,4 +27,4 @@ epsm-web это однин из двух серверов распределен
 #### технологии
 Spring webmvc, JSON, SLF4J, Logback, Junit, Mockito, PowerMockito, Spring test.
 
-Покрытие unit-тестами согласно EclEmma 67,9%. Статистику портит то, что тестами не покрыты @Configuration классы и класс UrlRequestSender. Остальное покрыто тестами на 100%.
+Покрытие unit-тестами согласно EclEmma 85,9%.

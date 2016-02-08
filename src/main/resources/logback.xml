@@ -41,19 +41,19 @@
     	</rollingPolicy>
 	</appender>
 	
-	<logger name="com.epsm.epsmWeb" level="DEBUG" additivity="false">
+	<logger name="com.epsm.epsmWeb" level="INFO" additivity="false">
 		<appender-ref ref="web-application" />
 	</logger>
 
-	<logger name="com.epsm.epsmCore.model" level="DEBUG" additivity="false">
+	<logger name="com.epsm.epsmCore.model" level="INFO" additivity="false">
 		<appender-ref ref="core-application" />
 	</logger>
 	
-	<logger name="com.epsm.epsmCore.model.utils" level="DEBUG" additivity="false">
+	<logger name="com.epsm.epsmCore.model.utils" level="INFO" additivity="false">
 		<appender-ref ref="web-application" />
 	</logger>
 	
-	<logger name="com.epsm.epsmCore.model.bothConsumptionAndGeneration.PowerObjectMessageManager" level="DEBUG" additivity="false">
+	<logger name="com.epsm.epsmCore.model.bothConsumptionAndGeneration.PowerObjectMessageManager" level="INFO" additivity="false">
 		<appender-ref ref="core-system" />
 	</logger>
 
