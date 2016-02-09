@@ -1,30 +1,44 @@
 #Electric power system model
-###Общие данные для всего проекта
-Это простая модель выделенной электроэнергетической системы, состоящая из собственно модели и диспетчера. В модели моделируется работа оборудования электрической станции, участвующего в процессе поддержания частоты в энергосистеме и два вида потребителей нагрузки. Модель получает суточные графики генерации от диспетчера. Диспетчер расчитывает (на данный момент выдаёт заглушку) суточные графики генерации для электростанций в системе и получает от электростанций и потребителей мгновенные значения вырабатываемой и потребляемой мощности через заданные промежутки времени в модели. Приложение состоит из четырех пакетов [epsm-core](https://github.com/epsm/epsm-core), [epsm-web](https://github.com/epsm/epsm-web), [epsd-core](https://github.com/epsm/epsd-core) и [epsd-web](https://github.com/epsm/epsd-web). К каждому пакету прилагается описание. Приложение запущенно на двух серверах ([модель](http://model-epsm.rhcloud.com/) и [диспетчер](http://dispatcher-epsm.rhcloud.com/app/history)) взаимодействующих между собой с помощью обмена сообщениями в формате JSON и имеющих web-интерфейсы.
+###General data for project
+This is the simple model of a dedicated electric power system. The model consist of two separate parts. There are model and dispatcher. In the model simulated working of power stations equipment, that participate in process of supporting the frequency in system.
+The model gets daily generation schedules from dispatcher. Dispatcher gets data from power stations, consumers and calculates (for now gives stub) daily generation schedules.
+
+Application consist of four packages, two models:
+
++ [epsm-core](https://github.com/epsm/epsm-core)
++ [epsd-core](https://github.com/epsm/epsd-core)
+
+and two wrappers for models that helps intarcting models using JSON. Also wrappers have web interfaces.
+
++ [epsd-web](https://github.com/epsm/epsd-web)
++ [epsm-web](https://github.com/epsm/epsm-web)
+
+
+Application launched on two servers on OpenShift:
+
++ [model](http://model-epsm.rhcloud.com/)
++ [dispatcher](http://dispatcher-epsm.rhcloud.com/app/history). 
+
+The total project size is more than 16,000 source lines of code.
 
 ##epsm-web
-#### описание пакета
-Для того, чтобы понять что делает приложение, сначала нужно ознакомиться со следующим его пакетами:
+#### package description
+To understand what does project do you have to read following firstly:
 
-1. описание пакета [epsm-core](https://github.com/epsm/epsm-core).
-2. описание пакета [epsd-core](https://github.com/epsm/epsd-core)
-
-epsm-web это однин из двух серверов распределенного приложения. Внутри сервера запущена модель электроэнергетической системы из пакета [epsm-core](https://github.com/epsm/epsm-core). Сервер осуществляет приём и передачу сообщений  в формате JSON по протоколу http для модели. 
-Обмен сообщениями ведется с сервером [epsd-web](https://github.com/epsm/epsd-web), который в свою очередь является обёрткой для диспетчера электроэнергетической системы из пакета [epsd-core](https://github.com/epsm/epsd-core). Также сервер имеет web-интерфейc, отображающий состояние модели на момент запроса страницы.
-
-серверы доступны по следующим ссылкам:
-
-1. [сервер модели электроэнергетической системы](http://model-epsm.rhcloud.com/)
-2. [сервер диспетчера электроэнергетической системы](http://dispatcher-epsm.rhcloud.com/app/history).
-
-#### особености реализации
-
-Для лучшего понимания следует посмотреть диаграммы классов в разделе особенности реализации пакета [epsm-core](https://github.com/epsm/epsm-core).
-
-Внутри контейнера Spring c помощью фабрики создаётся bean, который реализует интерфейс DispatchingObjectSource который собственно является моделью электроэнергетической системы. Через этот интерфейс bean класса реализующего интерфейс IncomingMessageService передаёт полученные контроллерами сообщения от сервера диспетчера. Модель отпраляет сообщения диспетчеру через bean, реализующий интерфейс OutgoingMessageService, который в свою очередь наследует интерфейс Dsipatcher с которым работает модель. 
+1. subject area description for [epsm-core](https://github.com/epsm/epsm-core).
+2. subject area description for [epsd-core](https://github.com/epsm/epsd-core)
 
 
-#### технологии
-Spring webmvc, JSON, SLF4J, Logback, Junit, Mockito, PowerMockito, Spring test.
+epsm-web is one of the two servers of the distributed application. Inside the server running model of the power system from the package [epsm-core](https://github.com/epsm/epsm-core). The server performs the receiving and transmission of messages in JSON format over http for the model. 
+Messaging is performing with the server [epsd-web](https://github.com/epsm/epsd-web), which  is a wrapper for the dispatcher of the electric power system from the package [epsd-core](https://github.com/epsm/epsd-core). Also the server has a [web interface](http://model-epsm.rhcloud.com/) that displays the state of the model at the time of the page request.
 
-Покрытие unit-тестами согласно EclEmma 85,9%.
+####realization
+
+It will be better to see class diagrams in realization chapter of [epsm-core](https://github.com/epsm/epsm-core) to understand more clearly.
+
+Inside the Spring container creates bean that implements the DispatchingObjectSource interface. This bean actually is a model of power system. Through this interface the another bean that is IncomingMessageService implementation passes given from controllers messages to model. Model sends messages to the dispatcher through the bean that implements the interface OutgoingMessageService, which inherited from Dsipatcher interface.
+
+#### technologies
+Spring webmvc, JSON, SLF4J, Logback, Junit, Mockito, PowerMockito and Spring test.
+
+Unit-test coverage according to EclEmma is  85,9%.
