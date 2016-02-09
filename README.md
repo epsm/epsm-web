@@ -42,12 +42,12 @@ The total project size is more than 16,000 source lines of code.
 #### package description
 To understand what does project do you have to read following firstly:
 
-1. subject area description for [epsm-core](https://github.com/epsm/epsm-core).
+1. subject area description for [epsm-core](https://github.com/epsm/epsm-core)
 2. subject area description for [epsd-core](https://github.com/epsm/epsd-core)
 
 
-epsm-web is one of the two servers of the distributed application. Inside the server running model of the power system from the package [epsm-core](https://github.com/epsm/epsm-core). The server performs the receiving and transmission of messages in JSON format over http for the model. 
-Messaging is performing with the server [epsd-web](https://github.com/epsm/epsd-web), which  is a wrapper for the dispatcher of the electric power system from the package [epsd-core](https://github.com/epsm/epsd-core). Also the server has a [web interface](http://model-epsm.rhcloud.com/) that displays the state of the model at the time of the page request.
+epsm-web is one of the two servers of the distributed application. Inside the server run model of the power system from the package [epsm-core](https://github.com/epsm/epsm-core). The server performs the receiving and transmitting messages in JSON format over http for the model. 
+Messaging is performing with the server [epsd-web](https://github.com/epsm/epsd-web), which  is a wrapper for the dispatcher of the electric power system from the package [epsd-core](https://github.com/epsm/epsd-core). Also the server has a [web interface](http://model-epsm.rhcloud.com/) that displays the state of the model.
 
 ####realization
 
@@ -55,7 +55,4 @@ It will be better to see class diagrams in realization chapter of [epsm-core](ht
 
 Inside the Spring container creates bean that implements the DispatchingObjectSource interface. This bean actually is a model of power system. Through this interface the another bean that is IncomingMessageService implementation passes given from controllers messages to model. Model sends messages to the dispatcher through the bean that implements the interface OutgoingMessageService, which inherited from Dsipatcher interface.
 
-#### technologies
-Spring webmvc, JSON, SLF4J, Logback, Junit, Mockito, PowerMockito and Spring test.
-
-Unit-test coverage according to EclEmma is  85,9%.
+Unit-test coverage according to EclEmma is 85,9%.
