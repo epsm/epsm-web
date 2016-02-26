@@ -18,6 +18,13 @@
 		<api.consumer.esatblishconnection>/api/consumer/register</api.consumer.esatblishconnection>
 		<api.consumer.acceptstate>/api/consumer/acceptstate</api.consumer.acceptstate>
 	</properties>
+	
+	<repositories>
+		<repository>
+			<id>jitpack.io</id>
+			<url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 
 	<dependencies>
 		<!-- Spring -->    	
@@ -73,11 +80,11 @@
     		<version>1.2</version>
 		</dependency>
 		
-		<!-- epsm-core, installed to local repository -->	
+		<!-- epsm-core -->	
 		<dependency>
-			<groupId>com.epsm</groupId>
+			<groupId>com.github.epsm</groupId>
 			<artifactId>epsm-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>860d07118c826b1f0474ad88b020ce9848fd5eb9</version>
 		</dependency>
 		
 		<!-- Tests -->
