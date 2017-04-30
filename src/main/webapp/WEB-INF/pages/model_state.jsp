@@ -14,11 +14,8 @@
         <div class="all">
             <div class="roof">
                 <div class="EPSsw">
-                    <h2 class="EPS">Electric Power System Model</h2>
+                    <h2 class="EPS">Model</h2>
                 </div>
-                <form class="out" method="post" action="index.html">
-                    <input class="input" type="submit" value="sign out" name="sign out" disabled />
-                </form>
                 <p class="cms">curent model state</p>
             </div>
             <div class="menu">
