@@ -37,8 +37,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Bean
     public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
-		PropertySourcesPlaceholderConfigurer configurer 
-				= new PropertySourcesPlaceholderConfigurer();
+		PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
 		configurer.setLocation(new ClassPathResource("application.properties"));
 		
         return configurer;

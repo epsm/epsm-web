@@ -1,37 +1,26 @@
 package com.epsm.epsmWeb.configuration;
 
-import java.time.LocalDateTime;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.epsm.epsmcore.model.dispatch.Dispatcher;
+import com.epsm.epsmcore.model.simulation.Simulation;
+import com.epsm.epsmcore.model.simulation.SimulationManager;
+import com.epsm.epsmcore.model.simulation.TimeService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-import com.epsm.epsmCore.model.dispatch.Dispatcher;
-import com.epsm.epsmCore.model.generalModel.DispatchingObjectsSource;
-import com.epsm.epsmCore.model.generalModel.DispatchingObjectsSourceFactory;
-import com.epsm.epsmCore.model.generalModel.TimeService;
+import java.time.LocalDateTime;
 
 @Configuration
 @ComponentScan("com.epsm.epsmWeb")
 public class ApplicationConfig{
-	private final LocalDateTime simulationStartDateTime = LocalDateTime.of(2000, 01, 01, 00, 00);
-	private static Logger logger = LoggerFactory.getLogger(ApplicationConfig.class);
-	
+
+	private static final LocalDateTime SIMULATION_START_DATETIME = LocalDateTime.of(2000, 01, 01, 00, 00);
+
 	@Bean
-	public TimeService createTimeService(){
-		logger.debug("Timeservice @Bean created.");
-		return new TimeService();
-	}
-	
-	@Bean
-	public DispatchingObjectsSource getSource(TimeService timeservice, Dispatcher dispatcher){
-		DispatchingObjectsSourceFactory factory = new DispatchingObjectsSourceFactory(
-				timeservice, dispatcher, simulationStartDateTime);
-		
-		logger.info("EPS Model created and run.");
-		
-		return factory.createSource();
+	public Simulation getSource(Dispatcher dispatcher) {
+		TimeService timeService = new TimeService();
+		SimulationManager simulationManager = new SimulationManager(timeService, dispatcher, SIMULATION_START_DATETIME);
+
+		return simulationManager.createAndRun();
 	}
 }

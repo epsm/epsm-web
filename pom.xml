@@ -12,11 +12,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.2.4.RELEASE</spring.version>
-		
-		<api.powerstation.esatblishconnection>/api/powerstation/register</api.powerstation.esatblishconnection>
-		<api.powerstation.acceptstate>/api/powerstation/acceptstate</api.powerstation.acceptstate>
-		<api.consumer.esatblishconnection>/api/consumer/register</api.consumer.esatblishconnection>
-		<api.consumer.acceptstate>/api/consumer/acceptstate</api.consumer.acceptstate>
 	</properties>
 	
 	<repositories>
@@ -72,19 +67,18 @@
 			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
-		
-		<!-- JSTL -->
+
 		<dependency>
     		<groupId>jstl</groupId>
     		<artifactId>jstl</artifactId>
     		<version>1.2</version>
 		</dependency>
-		
+
 		<!-- epsm-core -->	
 		<dependency>
-			<groupId>com.github.epsm</groupId>
+			<groupId>com.epsm</groupId>
 			<artifactId>epsm-core</artifactId>
-			<version>860d07118c826b1f0474ad88b020ce9848fd5eb9</version>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		
 		<!-- Tests -->
@@ -117,6 +111,11 @@
 			<artifactId>powermock-api-mockito</artifactId>
 			<version>1.6.4</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>java-hamcrest</artifactId>
+			<version>2.0.0.0</version>
 		</dependency>
 	</dependencies>
 

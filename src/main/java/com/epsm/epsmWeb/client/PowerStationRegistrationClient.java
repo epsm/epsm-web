@@ -1,18 +1,15 @@
 package com.epsm.epsmWeb.client;
 
+import com.epsm.epsmcore.model.generation.PowerStationParameters;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.epsm.epsmcore.model.consumption.ConsumerState;
-
-import java.util.List;
-
 @Component
-public class ConsumerStateClient extends AbstractClient<List<ConsumerState>> {
+public class PowerStationRegistrationClient extends AbstractClient<PowerStationParameters>{
 
-	@Value("${api.consumer.acceptstate}")
+	@Value("${api.powerstation.register}")
 	private String url;
-
+	
 	@Override
 	protected String getUrl() {
 		return url;

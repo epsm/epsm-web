@@ -4,8 +4,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
-import java.time.LocalDateTime;
-
+import com.epsm.epsmWeb.controller.api.PowerStationController;
+import com.epsm.epsmcore.model.common.PowerCurve;
+import com.epsm.epsmcore.model.generation.GeneratorGenerationSchedule;
+import com.epsm.epsmcore.model.generation.PowerStationGenerationSchedule;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,9 +18,6 @@ import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.epsm.epsmCore.model.bothConsumptionAndGeneration.LoadCurve;
-import com.epsm.epsmCore.model.generation.GeneratorGenerationSchedule;
-import com.epsm.epsmCore.model.generation.PowerStationGenerationSchedule;
 import com.epsm.epsmWeb.constants.TestsConstants;
 import com.epsm.epsmWeb.service.IncomingMessageService;
 import com.epsm.epsmWeb.util.UrlRequestSender;
@@ -51,22 +50,21 @@ public class PowerStationControllerTest {
 		prepareScheduleAsJSONString();
 		
 		mockMvc.perform(
-				post("/api/powerstation/command")
+				post("/api/powerstation/schedule")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(objectInJsonString))
 				.andExpect(status().isOk());
 	}
 	
 	private void prepareScheduleAsJSONString() throws JsonProcessingException{
-		PowerStationGenerationSchedule generationSchedule = 
-				new PowerStationGenerationSchedule(1, LocalDateTime.MIN, LocalDateTime.MIN, 2);
-		LoadCurve generationCurve = new LoadCurve(TestsConstants.LOAD_BY_HOURS);
+		PowerStationGenerationSchedule generationSchedule = new PowerStationGenerationSchedule(1);
+		PowerCurve generationCurve = new PowerCurve(TestsConstants.LOAD_BY_HOURS);
 		GeneratorGenerationSchedule genrationSchedule_1 = new GeneratorGenerationSchedule(
 				1, true, true, null);
 		GeneratorGenerationSchedule genrationSchedule_2 = new GeneratorGenerationSchedule(
 				2, true, false, generationCurve);
-		generationSchedule.addGeneratorSchedule(genrationSchedule_1);
-		generationSchedule.addGeneratorSchedule(genrationSchedule_2);
+		generationSchedule.getGeneratorSchedules().put(1, genrationSchedule_1);
+		generationSchedule.getGeneratorSchedules().put(2, genrationSchedule_2);
 		
 		objectToSerialize = generationSchedule;
 		objectInJsonString = mapper.writeValueAsString(objectToSerialize);

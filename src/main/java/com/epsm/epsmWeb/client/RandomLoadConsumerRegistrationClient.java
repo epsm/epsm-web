@@ -1,16 +1,13 @@
 package com.epsm.epsmWeb.client;
 
+import com.epsm.epsmcore.model.consumption.RandomLoadConsumerParameters;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.epsm.epsmcore.model.consumption.ConsumerState;
-
-import java.util.List;
-
 @Component
-public class ConsumerStateClient extends AbstractClient<List<ConsumerState>> {
+public class RandomLoadConsumerRegistrationClient extends AbstractClient<RandomLoadConsumerParameters>{
 
-	@Value("${api.consumer.acceptstate}")
+	@Value("${api.randomLoadConsumer.register}")
 	private String url;
 
 	@Override

@@ -1,10 +1,8 @@
 package com.epsm.epsmWeb.controller;
 
-import java.time.format.DateTimeFormatter;
-import java.util.Collection;
-
-import javax.servlet.http.HttpServletRequest;
-
+import com.epsm.epsmWeb.service.ModelStateService;
+import com.epsm.epsmcore.model.consumption.ConsumerState;
+import com.epsm.epsmcore.model.generation.PowerStationState;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,14 +11,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.epsm.epsmCore.model.consumption.ConsumerState;
-import com.epsm.epsmCore.model.generation.PowerStationState;
-import com.epsm.epsmWeb.service.ModelStateService;
+import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 
 @Controller
 @RequestMapping("/")
-public class ModelStatePageController{
+public class ModelStatePageController {
+
 	private DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd.MM.yyy HH:mm:ss");
 	private Logger logger = LoggerFactory.getLogger(ModelStatePageController.class);
 	
@@ -47,14 +48,14 @@ public class ModelStatePageController{
 		
 		powerStationStates = getPowerStationStatesContainer();
 		consumerStates = getConsumerStatesContainer();
-		realTimeStamp = getRealTimeStamp(powerStationStates, consumerStates);
+		realTimeStamp = LocalDateTime.now().format(formatter);
 		simulationTimeStamp = getSimulationTimeStamp(powerStationStates, consumerStates);
 		frequency = getFrequency(powerStationStates);
 		
 		model.put("powerStationStatesContainer", powerStationStates);
 		model.put("consumerStatesContainer", consumerStates);
 		model.put("realTimeStamp", realTimeStamp);
-		model.put("simulationTimeStamp", simulationTimeStamp.toString());
+		model.put("simulationTimeStamp", simulationTimeStamp);
 		model.put("frequency", frequency);
 		model.put("dispatcherUrl", dispatcherUrl);
 	}
@@ -65,18 +66,6 @@ public class ModelStatePageController{
 	
 	private Collection<ConsumerState> getConsumerStatesContainer(){
 		return service.getConsumerStates();
-	}
-	
-	private String getRealTimeStamp(Collection<PowerStationState> powerStationStates,
-			Collection<ConsumerState> consumerStates){
-		
-		if(powerStationStates.size() != 0){
-			return formatter.format(powerStationStates.iterator().next().getRealTimeStamp());
-		}else if(consumerStates.size() != 0){
-			return formatter.format(consumerStates.iterator().next().getRealTimeStamp());
-		}else{
-			return "unknown";
-		}
 	}
 	
 	private String getSimulationTimeStamp(Collection<PowerStationState> powerStationStates,
@@ -92,11 +81,14 @@ public class ModelStatePageController{
 	}
 	
 	private String getFrequency(Collection<PowerStationState> powerStationStates){
-		
-		if(powerStationStates.size() != 0){
-			return new Float(powerStationStates.iterator().next().getFrequency()).toString();
-		}else{
-			return "unknown";
-		}
+		return powerStationStates.size() != 0
+			? Float.toString(powerStationStates.iterator().next().getFrequency())
+			: "unknown";
+	}
+
+	@ResponseBody
+	@RequestMapping("status")
+	public String status() {
+		return LocalDateTime.now().toString();
 	}
 }

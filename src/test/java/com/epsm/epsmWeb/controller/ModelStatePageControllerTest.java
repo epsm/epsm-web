@@ -1,21 +1,8 @@
 package com.epsm.epsmWeb.controller;
 
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
-
-import java.lang.reflect.Field;
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-
+import com.epsm.epsmWeb.service.ModelStateService;
+import com.epsm.epsmcore.model.consumption.ConsumerState;
+import com.epsm.epsmcore.model.generation.PowerStationState;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,16 +11,24 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.epsm.epsmCore.model.consumption.ConsumerState;
-import com.epsm.epsmCore.model.generation.PowerStationState;
-import com.epsm.epsmWeb.service.ModelStateService;
+import java.lang.reflect.Field;
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+
+import static org.hamcrest.Matchers.emptyString;
+import static org.hamcrest.core.IsNot.not;
+import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ModelStatePageControllerTest {
 	private MockMvc mockMvc;
 	private Collection<PowerStationState> powerStationStates;
 	private Collection<ConsumerState> consumerStates;
-	private String realTimeStamp;
 	private String simulationTimeStamp;
 	private PowerStationState stationState;
 	private ConsumerState consumerState;
@@ -49,12 +44,9 @@ public class ModelStatePageControllerTest {
 		mockMvc = standaloneSetup(controller).build();
 		stationState = mock(PowerStationState.class);
 		consumerState = mock(ConsumerState.class);
-		when(stationState.getRealTimeStamp()).thenReturn(LocalDateTime.MAX);
 		when(stationState.getSimulationTimeStamp()).thenReturn(LocalDateTime.MIN);
 		when(stationState.getFrequency()).thenReturn(55.55f);
-		when(consumerState.getRealTimeStamp()).thenReturn(LocalDateTime.MAX);
 		when(consumerState.getSimulationTimeStamp()).thenReturn(LocalDateTime.MIN);
-		realTimeStamp = "31.12.999999999 23:59:59";
 		simulationTimeStamp = "01.01.1000000000 00:00:00";
 		
 		setDispatcherUrl();
@@ -75,7 +67,7 @@ public class ModelStatePageControllerTest {
                 .andExpect(view().name("model_state"))
                 .andExpect(model().attribute("powerStationStatesContainer", powerStationStates))
                 .andExpect(model().attribute("consumerStatesContainer", consumerStates))
-                .andExpect(model().attribute("realTimeStamp", realTimeStamp))
+                .andExpect(model().attribute("realTimeStamp", not(emptyString())))
                 .andExpect(model().attribute("simulationTimeStamp", simulationTimeStamp))
                 .andExpect(model().attribute("frequency", "55.55"))
                 .andExpect(model().attribute("dispatcherUrl", "someUrl"));
@@ -101,7 +93,7 @@ public class ModelStatePageControllerTest {
                 .andExpect(view().name("model_state"))
                 .andExpect(model().attribute("powerStationStatesContainer", powerStationStates))
                 .andExpect(model().attribute("consumerStatesContainer", consumerStates))
-                .andExpect(model().attribute("realTimeStamp", realTimeStamp))
+                .andExpect(model().attribute("realTimeStamp", not(emptyString())))
                 .andExpect(model().attribute("simulationTimeStamp", simulationTimeStamp))
                 .andExpect(model().attribute("frequency", "unknown"))
                 .andExpect(model().attribute("dispatcherUrl", "someUrl"));
@@ -127,7 +119,7 @@ public class ModelStatePageControllerTest {
                 .andExpect(view().name("model_state"))
                 .andExpect(model().attribute("powerStationStatesContainer", powerStationStates))
                 .andExpect(model().attribute("consumerStatesContainer", consumerStates))
-                .andExpect(model().attribute("realTimeStamp", "unknown"))
+                .andExpect(model().attribute("realTimeStamp", not(emptyString())))
                 .andExpect(model().attribute("simulationTimeStamp", "unknown"))
                 .andExpect(model().attribute("frequency", "unknown"))
                 .andExpect(model().attribute("dispatcherUrl", "someUrl"));

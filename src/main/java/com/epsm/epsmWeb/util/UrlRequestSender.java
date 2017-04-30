@@ -50,7 +50,7 @@ public class UrlRequestSender<T> {
 		
 		responseCode = getResponceCode(connection);
 		
-		if(! isResponeCodeExpected(responseCode)){
+		if(!isResponeCodeExpected(responseCode)){
 			closeConnection(connection);
 			return false;
 		}

@@ -1,11 +1,9 @@
 package com.epsm.epsmWeb.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
-
-import java.time.LocalDateTime;
-
+import com.epsm.epsmWeb.controller.api.ConsumerController;
+import com.epsm.epsmWeb.service.IncomingMessageService;
+import com.epsm.epsmcore.model.consumption.ConsumerPermission;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,17 +13,14 @@ import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import com.epsm.epsmCore.model.consumption.ConsumptionPermissionStub;
-import com.epsm.epsmWeb.service.IncomingMessageService;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ConsumerControllerTest {
 	private MockMvc mockMvc;
 	private ObjectMapper mapper;
-	private String objectInJsonString;
-	private Object objectToSerialize;
 	
 	@InjectMocks
 	private ConsumerController controller;
@@ -42,17 +37,12 @@ public class ConsumerControllerTest {
 	
 	@Test
 	public void acceptsConsumerPermission() throws Exception{
-		preparePermissionAsJSONString();
-		
+		ConsumerPermission consumerPermission = new ConsumerPermission(1, true);
+
 		mockMvc.perform(
-				post("/api/consumer/command")
+				post("/api/consumer/permission")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(objectInJsonString))
+				.content(mapper.writeValueAsString(consumerPermission)))
 				.andExpect(status().isOk());
-	}
-	
-	private void preparePermissionAsJSONString() throws JsonProcessingException{
-		objectToSerialize = new ConsumptionPermissionStub(0, LocalDateTime.MIN, LocalDateTime.MIN);
-		objectInJsonString = mapper.writeValueAsString(objectToSerialize);
 	}
 }
