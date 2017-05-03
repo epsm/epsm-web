@@ -41,7 +41,7 @@
     	</rollingPolicy>
 	</appender>
 	
-	<logger name="com.epsm.epsmWeb" level="INFO" additivity="false">
+	<logger name="com.epsm.epsmweb" level="INFO" additivity="false">
 		<appender-ref ref="web-application" />
 	</logger>
 
