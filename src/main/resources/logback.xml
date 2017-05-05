@@ -41,23 +41,23 @@
     	</rollingPolicy>
 	</appender>
 	
-	<logger name="com.epsm.epsmweb" level="INFO" additivity="false">
+	<logger name="com.epsm.epsmweb" level="ERROR" additivity="false">
 		<appender-ref ref="web-application" />
 	</logger>
 
-	<logger name="com.epsm.epsmCore.model" level="INFO" additivity="false">
+	<logger name="com.epsm.epsmcore.model" level="ERROR" additivity="false">
 		<appender-ref ref="core-application" />
 	</logger>
 	
-	<logger name="com.epsm.epsmCore.model.utils" level="INFO" additivity="false">
+	<logger name="com.epsm.epsmcore.model.utils" level="ERROR" additivity="false">
 		<appender-ref ref="web-application" />
 	</logger>
 	
-	<logger name="com.epsm.epsmCore.model.bothConsumptionAndGeneration.PowerObjectMessageManager" level="INFO" additivity="false">
+	<logger name="com.epsm.epsmcore.model.bothConsumptionAndGeneration.PowerObjectMessageManager" level="ERROR" additivity="false">
 		<appender-ref ref="core-system" />
 	</logger>
 
-	<root level="INFO">
+	<root level="ERROR">
 		<appender-ref ref="STDOUT"/>
 	</root>
 </configuration>
